@@ -1,0 +1,26 @@
+#!/bin/python3
+import os
+import sys
+from datetime import datetime
+
+# Complete the time_delta function below.
+def time_delta(t1, t2):
+    fmt = "%a %d %b %Y %H:%M:%S %z"   # format string for parsing
+    dt1 = datetime.strptime(t1, fmt)  # parse first timestamp
+    dt2 = datetime.strptime(t2, fmt)  # parse second timestamp
+    # Return absolute difference in seconds as string
+    return str(int(abs((dt1 - dt2).total_seconds())))
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input().strip())
+
+    for _ in range(t):
+        t1 = input().strip()
+        t2 = input().strip()
+
+        delta = time_delta(t1, t2)
+        fptr.write(delta + '\n')
+
+    fptr.close()
